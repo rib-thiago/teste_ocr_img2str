@@ -1,9 +1,48 @@
+"""
+Este script extrai texto de uma imagem usando OCR (Optical Character Recognition) e fornece opções para exibir o texto na tela ou salvá-lo em um arquivo de texto.
+
+Usage:
+    python script.py <filename> [--language LANGUAGE] [--save] [--display]
+
+Arguments:
+    filename (str): Caminho para o arquivo de imagem a ser processado.
+
+Options:
+    --language LANGUAGE, -l LANGUAGE: Idioma para o reconhecimento de caracteres OCR (padrão: eng).
+    --save, -s: Salvar o texto extraído em um arquivo de texto.
+    --display, -d: Exibir o texto extraído na tela.
+
+Exemplos de uso:
+    # Extrair texto da imagem 'imagem.png' e exibi-lo na tela
+    python script.py imagem.png --display
+
+    # Extrair texto da imagem 'imagem.png' usando o idioma 'por' e salvá-lo em um arquivo de texto
+    python script.py imagem.png --language por --save
+"""
+
 import argparse
 import cv2
 import pytesseract
 import os
 
 def extract_text(filename, language='eng', save_to_file=False, display=False):
+    """
+    Extrai texto de uma imagem usando OCR (Optical Character Recognition) e fornece opções para exibir o texto na tela ou salvá-lo em um arquivo de texto.
+
+    Args:
+        filename (str): Caminho para o arquivo de imagem a ser processado.
+        language (str, optional): Idioma para o reconhecimento de caracteres OCR (padrão: 'eng').
+        save_to_file (bool, optional): Se True, salva o texto extraído em um arquivo de texto (padrão: False).
+        display (bool, optional): Se True, exibe o texto extraído na tela (padrão: False).
+
+    Returns:
+        None
+
+    Raises:
+        FileNotFoundError: Se o arquivo de imagem especificado não for encontrado.
+        Exception: Se ocorrer um erro ao processar a imagem.
+
+    """
     # Verifica se nenhuma opção foi selecionada
     if not save_to_file and not display:
         print("Nenhuma opção selecionada. O texto não foi exibido nem salvo.")
